@@ -1,0 +1,23 @@
+div{
+    margin-bottom:20px;
+}
+.odd{
+    background-color: lightpink;
+    font-family: Verdana,"DejaVu Sans",sans-serif;
+    font-size:15px;
+}
+
+.odd.number-3{
+    font-size:24px;
+}
+
+#num-2{
+    font-size:36px;
+    color:rgb(0,0,255)
+}
+
+#num-4{
+    background-color: hsl(88, 77%, 78%);
+    font-weight:bold;
+    font-size:24px;
+}
