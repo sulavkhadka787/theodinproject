@@ -1,0 +1,32 @@
+*{
+    margin:0;
+    padding:0;
+}
+.container{
+    display: flex;
+    flex-direction:column;
+    height:100vh;
+    color:white;
+}
+.header{
+    background-color:#1f2937;
+    height:300px;
+    display: flex;
+   justify-content: center;
+}
+
+.logo-container{
+    flex-basis:80%;
+    flex-direction: column;
+}
+.logo{
+    display: flex;
+    justify-content: space-between;
+}
+
+.logo ul {
+    display: flex;
+}
+.main{
+    flex:1;
+}
