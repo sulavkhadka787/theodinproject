@@ -10,22 +10,69 @@
 }
 .header{
     background-color:#1f2937;
-    height:300px;
     display: flex;
-   justify-content: center;
+    flex-direction: column; 
 }
 
 .logo-container{
-    flex-basis:80%;
+    width:60%;
     flex-direction: column;
+    margin:auto;
+    margin-bottom:70px;
 }
+    
 .logo{
+    margin-top: 10px;
     display: flex;
     justify-content: space-between;
+    margin-bottom:50px;
 }
 
 .logo ul {
     display: flex;
+    list-style-type:none;
+}
+
+.logo ul li{
+    margin-right:20px;
+}
+.header-img-div{
+    display: flex;
+}
+
+.header-img-div .header-text{
+    display: flex;
+    flex-direction: column;
+    width:300px;
+    margin-right:80px;
+}
+
+.header-text h2{
+    width:200px;
+    margin-bottom:5px;
+}
+
+.header-text p{
+    margin-bottom:10px;
+}
+
+.header-text button{
+    width:90px;
+    padding:5px;
+    border-radius:2px;
+    border:none;
+    background-color:rgb(49, 114, 194);
+    color:white;
+}
+.header-img-div .img-div{
+    height:100px;
+    width:400px;
+    background-color:grey;
+    padding:20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
 }
 .main{
     flex:1;
