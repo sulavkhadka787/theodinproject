@@ -3,6 +3,7 @@ let computerScore=0;
 let roundWinner='';
 
 function playRound(playerSelection,computerSelection){
+    console.log('playround test');
     if(playerSelection===computerSelection){
         roundWinner='tie'
     }
@@ -52,7 +53,9 @@ function capitalizeFirstLetter(string){
 }
 
 function getRandomChoice(){
+    console.log('get random number');
     let randomNumber=Math.floor(Math.random()*3)
+    console.log('random-number',randomNumber);
     switch(randomNumber){
         case 0:
             return 'Rock'
@@ -77,6 +80,7 @@ const rockBtn=document.getElementById('rockBtn');
 const paperBtn=document.getElementById('paperBtn');
 const scissorsBtn=document.getElementById('scissorsBtn');
 const endgameModal=document.getElementById('endgameModal');
+const endgameMsg=document.getElementById('endgameMsg');
 const overlay=document.getElementById('overlay');
 const playerSign=document.getElementById('playerSign');
 const computerSign=document.getElementById('computerSign');
@@ -87,6 +91,7 @@ scissorsBtn.addEventListener('click',()=>handleClick('SCISSORS'))
 
 //currently working on this function
 function handleClick(playerSelection){
+    console.log('mabel is epl expert handleclicjk');
     if(isGameOver()){
         openEndgameModal();
         return;
@@ -110,6 +115,7 @@ function openEndgameModal(){
 }
 
 function updateChoices(playerSelection,computerSelection){
+    console.log('updage chaoices is runnig bithc h')
     switch(playerSelection){
         case 'ROCK':
             playerSign.textContent='✊';
@@ -122,14 +128,17 @@ function updateChoices(playerSelection,computerSelection){
             break;
     }
 
-    switch (computerSelection){
+    switch(computerSelection){
         case 'ROCK':
+            console.log('rock-compuiter')
             computerSign.textContent='✊';
             break;
         case 'PAPER':
+            console.log('paper-computer')
             computerSign.textContent='✋';
             break;
         case 'SCISSORS':
+            console.log('scissors-computers')
             computerSign.textContent='✌';
             break;
     }
@@ -148,5 +157,11 @@ function updateScore(){
     }
 
     playerScorePara.textContent=`Player: ${playerScore}`;
-    computerScorePara.textContent=`Player: ${computerScore}`;
+    computerScorePara.textContent=`Computer: ${computerScore}`;
+}
+
+function setFinalMessage(){
+    return playerScore > computerScore
+        ? (endgameMsg.textContent = 'You Won!')
+        :(endgameMsg.textContent = 'You Lost...')
 }
