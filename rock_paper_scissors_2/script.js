@@ -3,9 +3,9 @@ let computerScore=0;
 let roundWinner='';
 
 function playRound(playerSelection,computerSelection){
-    console.log('playround test');
-    if(playerSelection===computerSelection){
-        roundWinner='tie'
+    
+    if(playerSelection === computerSelection){
+        roundWinner = 'tie'
     }
     if(
         (playerSelection === 'ROCK' && computerSelection === 'SCISSORS') ||
@@ -40,8 +40,9 @@ function updateScoreMessage(winner,playerSelection,computerSelection){
     if(winner==='computer'){
         scoreMessage.textContent=`${capitalizeFirstLetter(playerSelection)}
         is beaten by ${computerSelection.toLowerCase()}`
+        return;
     }
-    return;
+    
 
     scoreMessage.textContent=`${capitalizeFirstLetter(
         playerSelection
@@ -53,18 +54,17 @@ function capitalizeFirstLetter(string){
 }
 
 function getRandomChoice(){
-    console.log('get random number');
+    
     let randomNumber=Math.floor(Math.random()*3)
-    console.log('random-number',randomNumber);
+    
     switch(randomNumber){
         case 0:
-            return 'Rock'
+            return 'ROCK'
         case 1:
             return 'PAPER'
         case 2:
             return 'SCISSORS'
-        default:
-            return 'INVALID SELECTION'
+        
     }
 }
 
@@ -84,14 +84,17 @@ const endgameMsg=document.getElementById('endgameMsg');
 const overlay=document.getElementById('overlay');
 const playerSign=document.getElementById('playerSign');
 const computerSign=document.getElementById('computerSign');
+const restartBtn=document.getElementById('restartBtn');
 
 rockBtn.addEventListener('click',()=>handleClick('ROCK'));
 paperBtn.addEventListener('click',()=>handleClick('PAPER'));
 scissorsBtn.addEventListener('click',()=>handleClick('SCISSORS'))
+restartBtn.addEventListener('click',restartGame);
+overlay.addEventListener('click', closeEndgameModal);
 
 //currently working on this function
 function handleClick(playerSelection){
-    console.log('mabel is epl expert handleclicjk');
+    
     if(isGameOver()){
         openEndgameModal();
         return;
@@ -110,12 +113,17 @@ function handleClick(playerSelection){
 }
 
 function openEndgameModal(){
-    endgameModal.classList.add('active');
-    overlay.classList.add('active');
+    endgameModal.classList.remove('active');
+    overlay.classList.remove('active');
+}
+
+function closeEndgameModal(){
+    endgameModal.classList.active('active');
+    overlay.classList.remove('active');
 }
 
 function updateChoices(playerSelection,computerSelection){
-    console.log('updage chaoices is runnig bithc h')
+    
     switch(playerSelection){
         case 'ROCK':
             playerSign.textContent='✊';
@@ -164,4 +172,17 @@ function setFinalMessage(){
     return playerScore > computerScore
         ? (endgameMsg.textContent = 'You Won!')
         :(endgameMsg.textContent = 'You Lost...')
+}
+
+function restartGame(){
+    playerScore = 0;
+    computerScore =0;
+    scoreInfo.textContent = 'Choose your Weapon';
+    scoreMessage.textContent= 'First to score 5 points win the game';
+    playerScorePara.textContent = 'Player: 0';
+    computerScorePara.textContent = 'Computer: 0';
+    playerSign.textContent = '❔';
+    computerSign.textContent = '❔';
+    endgameModal.classList.remove('active');
+    overlay.classList.remove('active');
 }
