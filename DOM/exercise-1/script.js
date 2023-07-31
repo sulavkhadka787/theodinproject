@@ -24,3 +24,21 @@ division.appendChild(heading_1);
 division.appendChild(paragraph2);
 
 console.log(document);
+
+function alert(){
+    console.log('hello alert');
+    return 'hello zz';
+}
+
+console.log('alert',alert);
+console.log('alert()',alert());
+alert();
+
+const btn =document.getElementById('btn');
+btn.addEventListener('click',function(e){
+    console.log(e);
+});
+
+btn.addEventListener('click',function(e){
+    e.target.style.background='blue';
+})
