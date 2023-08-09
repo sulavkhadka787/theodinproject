@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        
+.box {
+  border-bottom:1px solid red;
+  background: lightblue;
+  width: 200px;
+  height: 200px;
+  margin: 20px auto;
+  transition: transform 1s linear;
+  transform-origin: right bottom;
+  transform-style: preserve-3D; 
+  position: relative;
+}
+
+.box-rotate {
+  transform: rotate(360deg);
+}
+
+button {
+  display: block;
+  margin: auto;
+}
+
+.dot{
+    position: absolute;
+    width:10px;
+    height:10px;
+    background-color: red;
+    border-radius:50%;
+    top:50%;
+    left:50%;
+}
+
+
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    <div class="box">
+        <div class="dot"></div>
+    </div>
+
+<button onclick=clickit()>click me</button>
+
+<script>
+   
+let btn=document.querySelector('button');   
+let x=document.querySelector('.box');
+
+console.log(btn);
+console.log(x);
+
+function clickit(){
+    x.classList.toggle('box-rotate');
+}
+
+</script>
+</body>
+</html>
