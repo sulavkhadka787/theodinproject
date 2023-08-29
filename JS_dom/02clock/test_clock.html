@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+<body>
+    <style>
+        .outer_div{
+            border:2px solid red;
+            padding:30px;
+            margin-top:100px;
+        }
+        .div{
+            height:100px;
+            width:100px;
+            background-color:green;
+            margin:auto;
+            transform-origin:bottom right;
+            transition:transform 1s ease-out;
+            
+        }
+
+        .div:hover{
+            transform: rotate(30deg);
+            
+        }
+    </style>
+    <div class="outer_div">
+        <div class="div">
+            Hello Hello 
+    </div>
+    </div>
+    
+</body>
+</html>
