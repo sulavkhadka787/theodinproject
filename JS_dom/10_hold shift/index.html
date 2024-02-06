@@ -57,49 +57,58 @@
             <p>This is an inbox layout. </p>
          </div>
         <div class="item">
-            <input type="checkbox">
+            <input type="checkbox" name="bbb">
             <p>Check one item</p>
         </div>
         <div class="item">
-            <input type="checkbox">
+            <input type="checkbox" name="ccc">
             <p>Hold down your Shift Key</p>
         </div>
         <div class="item">
-            <input type="checkbox">
+            <input type="checkbox" name="ddd">
             <p>Check a lower item</p>
         </div>
         <div class="item">
-            <input type="checkbox">
+            <input type="checkbox" name="eee">
             <p>Everything in between should also be set to checked</p>
         </div>
         <div class="item">
-            <input type="checkbox">
+            <input type="checkbox" name="fff">
             <p>Try to do without any libraries</p>
         </div>
         <div class="item">
-            <input type="checkbox">
+            <input type="checkbox" name="ggg">
             <p>Just regular JavaScript</p>
         </div>
         <div class="item">
-            <input type="checkbox">
+            <input type="checkbox" name="hhh">
             <p>Good Luck!</p>
         </div>
         <div class="item">
-            <input type="checkbox">
+            <input type="checkbox" name="iiii">
             <p>Don't forget to tweet your result!</p>
         </div>
     </div>
     <script>
         const checkboxes=document.querySelectorAll('.inbox input[type="checkbox"]');
-        
 
+        
+        
         let lastChecked;
 
         function handleCheck(e){
+            console.log('this',this);
+            if(this.checked){
+                console.log('checked');
+            }
             let inBetween=false;
             if(e.shiftKey && this.checked){
+                console.log('last checked inside e.shiftkey-if', lastChecked);
                 checkboxes.forEach(checkbox => {
-                    console.log(checkbox);
+                    console.log('this-inside if e-shift',this);
+                    console.log('last chekced inside e-shift',lastChecked);
+                    console.log('chekcbox=>',checkbox);
+                    console.log('inbetween before -if', inBetween);
                     if(checkbox === this || checkbox === lastChecked){
                         inBetween = !inBetween;
                         console.log('Starting to check them in between', inBetween);
@@ -107,13 +116,18 @@
                         console.log('not this');
                     }
 
+                    console.log('inBetween after if', inBetween);
+
                     if(inBetween){
+                        console.log('inBetween===true')
+                        console.log('chekcbox inside if(inBetween)',checkbox);
                         checkbox.checked=true;  
                     }
                 })
             }
 
             lastChecked=this;
+            console.log ('last-checked',lastChecked)
         }
 
         checkboxes.forEach(checkbox=>checkbox.addEventListener('click',handleCheck));
