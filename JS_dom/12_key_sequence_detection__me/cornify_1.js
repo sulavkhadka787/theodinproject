@@ -119,5 +119,87 @@ let cornify_add=function (options){
     };
 
     //Append our container Div on the page
+    let body=document.getElementsByTagName("body")[0];
+    body.appendChild(div);
+    div.appendChild(img);
 
+    //when clicking 5 times, add a custom stylesheet to make the page look awesome
+    if(cornify_count == 5){
+        let cssExisting=document.getElementById("__cornify_css");
+        if(!cssExisting){
+            let head=document.getElementsByTagName("head")[0];
+            let css=document.createElement("link");
+            css.id="__cornify_css";
+            css.type="text/css";
+            css.rel="stylesheet";
+            css.href="https://www.cornify.com/css/cornify.css";
+            css.media="screen";
+            head.appendChild(css);
+        }
+
+        cornify_replace();
+    }
+
+    cornify_updatecount();
+
+    //Trigger an event on the document
+    let event=new Event("cornify");
+    document.dispatchEvent(event);
+
+}
+
+//Adds happy words at the beginning of all headers on the page
+let cornify_replace= function(){
+    let headerTypeIndex=6;
+    let headerElements;
+    let headerElement;
+    let i;
+
+    let magicalWords=[
+        "Happy",
+        "Sparkly",
+        "Glittery",
+        "Fun",
+        "Magical",
+        "Lovely",
+        "Cute",
+        "Charming",
+        "Amazing",
+        "Wonderful"
+    ];
+
+    while(headerTypeIndex >=1){
+        headerElements=document.getElementsByTagName("h" + headerTypeIndex);
+        for(i=0;i<headerElements.length;i++){
+            headerElement=headerElements[i];
+            headerElement.innerHTML=
+                magicalWords[Math.floor(Math.random() * magicalWords.length)] +
+                " " +
+                headerElement.innerHTML;
+        }
+
+        headerTypeIndex -=1;
+    }
+};
+
+let cornify_updatecount=function(){
+    let id="__cornify_count";
+    let p=document.getElementById(id);
+
+    if(p==null){
+        let p =document.createElement("p");
+        p.id=id;
+        p.style.position="fixed";
+        p.style.bottom="5px";
+        p.style.left="0px";
+        p.style.right="0px";
+        p.style.zIndex="1000000000";
+        p.style.color="#ff00ff";
+        p.style.textAlign="center";
+        p.style.textAlign="24px";
+        p.style.fontFamily="'Comic Sans Ms', 'Comic Sans', 'Market Felt', serif";
+        p.style.textTransform="uppercase";
+        let body=document.getElementsByTagName("body")[0];
+        body.appendChild(p);
+    }
 }
