@@ -202,4 +202,34 @@ let cornify_updatecount=function(){
         let body=document.getElementsByTagName("body")[0];
         body.appendChild(p);
     }
+
+    if(cornify_count == 1){
+        p.innerHTML="You cornified";
+    }else{
+        p.innerHTML="You cornified " + cornify_count + " times!";
+    }
+
+    //stores out coutn in a cookie for our next session
+    cornify_setcookie("cornify", cornify_count + "", 1000);
+
+    let cornify_setcookie=function(name,value,days){
+        let d= new Date();
+        d.setTime(d.getTime() + days * 24 * 60 * 60 * 1000);
+        let expires= "expires=" + d.toGMTString();
+        document.cookie=name + "=" + value + ";" + expires;
+    };
+
+    let cornify_getcookie=function(cname){
+        let name=cname + "=";
+        let ca=document.cookie.split(";");
+        for (let i=0;i<ca.length;i++){
+            let c=ca[i].trim();
+            if(c.indexOf(name)==0){
+                return c.substring(name.length,c.length);
+            }
+        }
+        return "";
+    }
+
+
 }
