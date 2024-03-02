@@ -212,14 +212,16 @@ let cornify_updatecount=function(){
     //stores out coutn in a cookie for our next session
     cornify_setcookie("cornify", cornify_count + "", 1000);
 
-    let cornify_setcookie=function(name,value,days){
+}
+
+let cornify_setcookie=function(name,value,days){
         let d= new Date();
         d.setTime(d.getTime() + days * 24 * 60 * 60 * 1000);
         let expires= "expires=" + d.toGMTString();
         document.cookie=name + "=" + value + ";" + expires;
-    };
+};
 
-    let cornify_getcookie=function(cname){
+let cornify_getcookie=function(cname){
         let name=cname + "=";
         let ca=document.cookie.split(";");
         for (let i=0;i<ca.length;i++){
@@ -228,8 +230,74 @@ let cornify_updatecount=function(){
                 return c.substring(name.length,c.length);
             }
         }
-        return "";
+    return "";
+}
+
+//Retrieve our click count from the cookie when we start up
+cornify_count=parseInt(cornify_getcookie("cornify"));
+if(isNaN(cornify_count)){
+    cornify_count=0;
+}
+
+//Clicking the rainbow cupcake button makes all the unicoron
+//disappear 
+let cornify_click_cupcake_button=function(){
+    let doc=document;
+    let corns=doc.getElementsByClassName("__cornify_unicorn");
+    if(corns){
+        for (let i=0;i<corns.length;i++){
+            corns[i].parentNode.removeChild(corns[i]);
+        }
     }
 
+    //remove our counter/
+    let button=doc.getElementById("__cornify_count");
+    if(button){
+        button.parentNode.removeChild(button);
+    }
 
+    //remove the cupcake button
+    let button1=doc.getElementById("__cornify_cupcake_button");
+    if(button1){
+        button1.parentNode.removeChild(button1);
+    }
+
+    let event =new Event("cornify-clear");
+    document.dispatchEvent(event);
+};
+
+//Add the rainbow cupcake button to the page
+let cornify_add_cupcake_button=function(){
+    let id="__cornify_cupcake_button";
+    let doc=document;
+    let button =doc.getElementById(id);
+
+    if(!button){
+        button=doc.createElement("div");
+        button.id=id;
+        button.onclick=cornify_click_cupcake_button;
+        button.style.position="fixed";
+        button.style.top="10px";
+        button.style.right="10px";
+        button.style.zIndex=2147483640;
+        button.setAttribute("aria-label","Hide unicorns and rainbows");
+
+        let image=document.createElement("img");
+        image.src="https://www.cornify.com/assets/cornify-cupcake-button.png";
+        image.alt="Cupcake button";
+        image.width=50;
+        image.height=50;
+        image.style.width="50px !important";
+        image.style.height="50px !important";
+        image.style.display="block !important";
+        image.style.cursor="pointer !important";
+        image.style.margin="0 !important";
+        image.style.padding="0 !important";
+        button.appendChild(image);
+
+        doc.getElementsByClassName("body")[0].appendChild(button);
+
+    }
 }
+
+
