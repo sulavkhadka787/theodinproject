@@ -3,13 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <script type="text/javascript" src="./cornify_1.js"></script>
+    <title>Cornify</title>
 </head>
 <body>
     <script>
-        let cornify_count=3;
-        let show=cornify_count==5;
-        console.log('show=>', show);
+        const pressed=[];
+        const secretCode="wesbos";
+
+        window.addEventListener("keyup",(e)=>{
+            console.log('e.key=>',e.key);
+            pressed.push(e.key);
+            pressed.splice(
+                -secretCode.length-1,
+                pressed.length - secretCode.length
+            );
+            if(pressed.join("").includes(secretCode)){
+                console.log("DING DING");
+                cornify_add();
+            }
+
+            console.log(pressed);
+        })
     </script>
 </body>
 </html>
