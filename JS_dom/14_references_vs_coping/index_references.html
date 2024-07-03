@@ -58,9 +58,43 @@
     console.log('teaxX', teamX);
     console.log('objArray', objArray);
 
+//same thing goes for objects, let's say we have a person object
+//with objects
 
+const person={
+    name:'Wes Bos',
+    age: 80
+};
+
+const captain = person;
+captain.number=90;
+
+console.log('captain',captain);
+console.log('person',person)
     
+//how do we take a copy instead
+const cap2=Object.assign({},person,{number:99,age:12});
+console.log('cap2:', cap2);
 
+const wes={
+    name:'Wes',
+    age:100,
+    social:{
+        twitter:'@wesbos',
+        facebook:'wesbos.developer'
+    }
+};
+const dev2 = JSON.stringify(wes);
+
+console.clear();
+console.log('dev-2 parse',dev2);
+
+const dev=Object.assign({}, wes);
+console.log('dev',dev);
+
+const dev3= JSON.parse(JSON.stringify(wes));
+
+console.log('dev2',dev3);
 
 </script>
 </body>
